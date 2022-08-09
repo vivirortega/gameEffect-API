@@ -26,22 +26,16 @@ async function signup(user: users) {
   await authRepository.insert(user);
 }
 
-async function login(user: users) {
-  const { email, password, username } = user;
-  const userExists = await authRepository.checkEmail(email);
+async function login(user: any) {
+  const { login, password } = user;
+  const userWithEmailExists = await authRepository.checkEmail(login);
+  const userWithUsernameExists = await authRepository.checkUsername(login);
+  const userExists = userWithEmailExists || userWithUsernameExists;
 
-  if (!userExists) {
+  if(!userExists){
     throw {
       type: "unauthorized",
-      message: "Wrong email or password",
-    };
-  }
-
-  const usernameExists = await authRepository.checkUsername(username);
-  if(!usernameExists){
-    throw {
-      type: "unauthorized",
-      message: "Wrong username",
+      message: "Wrong email/username or password",
     };
   }
 
@@ -49,11 +43,10 @@ async function login(user: users) {
   if (!validPassword) {
     throw {
       type: "unauthorized",
-      message: "Wrong email or password",
+      message: "Wrong email/username or password",
     };
   }
-  
-  console.log(userExists);
+
   const token = jwt.sign(
     { id: userExists.id, email: userExists.email },
     process.env.JWT_SECRET,
