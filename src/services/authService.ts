@@ -26,5 +26,33 @@ async function signup(user: users) {
   await authRepository.insert(user);
 }
 
-const authService = { signup };
+async function login(user: users) {
+  const { email, password } = user;
+  const userExists = await authRepository.checkEmail(email);
+
+  if (!userExists) {
+    throw {
+      type: "unauthorized",
+      message: "Wrong email or password",
+    };
+  }
+
+  const validPassword = await bcrypt.compare(password, userExists.password);
+  if (!validPassword) {
+    throw {
+      type: "unauthorized",
+      message: "Wrong email or password",
+    };
+  }
+
+  console.log(userExists);
+  const token = jwt.sign(
+    { id: userExists.id, email: userExists.email },
+    process.env.JWT_SECRET,
+    { expiresIn: process.env.JWT_EXPIRES_IN }
+  );
+  return { token };
+}
+
+const authService = { signup, login };
 export default authService;
