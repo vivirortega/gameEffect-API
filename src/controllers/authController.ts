@@ -9,7 +9,7 @@ export async function signUp(req: Request, res: Response) {
 }
 
 export async function login(req: Request, res: Response) {
-  const data: loginService = req.body;
+  const data = req.body;
   const token = await authService.login(req.body);
   res.status(200).send(token);
 }

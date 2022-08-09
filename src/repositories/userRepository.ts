@@ -1,0 +1,12 @@
+import prisma from "../config/database";
+
+export async function getUser(id: number) {
+  return await prisma.users.findFirst({
+    where: {
+      id: id,
+    },
+  });
+}
+
+const userRepository = { getUser };
+export default userRepository;
