@@ -9,6 +9,12 @@ export async function createGame(req: Request, res: Response) {
     await gameService.insertGame(game, user.id);
     res.sendStatus(201);
 }
+
+export async function getGame(req: Request, res: Response){
+    const id = parseInt(req.params.id);
+    const game = await gameService.getGame(id);
+    return res.send(game);
+}
   
 export async function deleteGame(req: Request, res: Response){
     const id = parseInt(req.params.id);

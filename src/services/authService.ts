@@ -1,11 +1,11 @@
-import authRepository from "../repositories/authRepository";
+import userRepository from "../repositories/userRepository";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { users } from "@prisma/client";
 
 async function signup(user: users) {
   const { email, password, username } = user;
-  const userExists = await authRepository.checkEmail(email);
+  const userExists = await userRepository.checkEmail(email);
   if (userExists) {
     throw {
       type: "unauthorized",
@@ -13,7 +13,7 @@ async function signup(user: users) {
     };
   }
 
-  const usernameExists = await authRepository.checkUsername(username);
+  const usernameExists = await userRepository.checkUsername(username);
   if (usernameExists) {
     throw {
       type: "unauthorized",
@@ -23,13 +23,13 @@ async function signup(user: users) {
 
   const SALT = 10;
   user.password = await bcrypt.hash(password, SALT);
-  await authRepository.insert(user);
+  await userRepository.insert(user);
 }
 
 async function login(user: any) {
   const { login, password } = user;
-  const userWithEmailExists = await authRepository.checkEmail(login);
-  const userWithUsernameExists = await authRepository.checkUsername(login);
+  const userWithEmailExists = await userRepository.checkEmail(login);
+  const userWithUsernameExists = await userRepository.checkUsername(login);
   const userExists = userWithEmailExists || userWithUsernameExists;
 
   if(!userExists){

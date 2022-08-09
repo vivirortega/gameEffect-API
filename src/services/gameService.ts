@@ -5,5 +5,9 @@ async function insertGame(game: gameService, user_id: number) {
    await gamesRepository.insert(game, user_id);
 }
 
-const gameService = { insertGame };
+async function getGame(id: number) {
+   return await gamesRepository.getGames(id);
+}
+
+const gameService = { insertGame, getGame };
 export default gameService;
