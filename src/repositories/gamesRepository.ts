@@ -15,8 +15,14 @@ export async function getGames(id: number) {
 }
 
 export async function deleteGame(id: number) {
-  
+  return await prisma.games.delete({
+    where: {
+      id: id,
+    },
+  });
 }
+
+//!TO-DO check if game is duplicated in database
 
 const gamesRepository = { insert, deleteGame, getGames };
 export default gamesRepository;

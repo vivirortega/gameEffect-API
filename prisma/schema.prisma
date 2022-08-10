@@ -40,11 +40,11 @@ model avaliations {
   id         Int     @id @default(autoincrement())
   user_id    Int
   game_id    Int
-  review     String
+  review     String?
   rate       Decimal
-  isFavorite Boolean
+  isFavorite Boolean?  
   isPlayed   Boolean
-  gamelist   Boolean
+  gamelist   Boolean?
   user       users   @relation(fields: [user_id], references: [id])
   games      games   @relation(fields: [game_id], references: [id])
 }
