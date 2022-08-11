@@ -5,7 +5,6 @@ import gamesRepository from "../repositories/gamesRepository";
 export async function createGame(req: Request, res: Response) {
   const game = req.body;
   const { user } = res.locals;
-  console.log(user.id);
   await gameService.insertGame(game, user.id);
   res.sendStatus(201);
 }
@@ -21,3 +20,4 @@ export async function deleteGame(req: Request, res: Response) {
   await gamesRepository.deleteGame(id);
   res.sendStatus(200);
 }
+

@@ -1,4 +1,5 @@
 import { games } from "@prisma/client";
+import { string } from "joi";
 import prisma from "../config/database";
 import { gameService } from "../types/authTypes";
 
@@ -22,7 +23,14 @@ export async function deleteGame(id: number) {
   });
 }
 
-//!TO-DO check if game is duplicated in database
+export async function duplicatedGame(releaseDate: string, name: string){
+  return await prisma.games.findFirst({
+    where: {
+      releaseDate: releaseDate, name: name
+    }
+  });
+}
 
-const gamesRepository = { insert, deleteGame, getGames };
+
+const gamesRepository = { insert, deleteGame, getGames, duplicatedGame };
 export default gamesRepository;

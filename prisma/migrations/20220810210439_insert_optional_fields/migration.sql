@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "avaliations" ALTER COLUMN "review" DROP NOT NULL,
+ALTER COLUMN "isFavorite" DROP NOT NULL,
+ALTER COLUMN "gamelist" DROP NOT NULL;
