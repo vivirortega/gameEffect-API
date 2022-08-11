@@ -47,12 +47,17 @@ async function login(user: any) {
     };
   }
 
+  const getByEmail = await userRepository.getUserByEmail(login);
+  const getByUsername = await userRepository.checkUsername(login);
+  const image = getByEmail || getByUsername;
+
+
   const token = jwt.sign(
     { id: userExists.id, email: userExists.email },
     process.env.JWT_SECRET,
     { expiresIn: process.env.JWT_EXPIRES_IN }
   );
-  return { token };
+  return { token, image };
 }
 
 const authService = { signup, login };

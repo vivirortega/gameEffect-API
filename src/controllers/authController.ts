@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import userRepository from "../repositories/userRepository";
 import authService from "../services/authService";
 
 export async function signUp(req: Request, res: Response) {

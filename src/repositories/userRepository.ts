@@ -20,5 +20,26 @@ export async function getUser(id: number) {
   });
 }
 
-const userRepository = { insert, checkEmail, checkUsername, getUser };
+export async function getUserByUsername(login: string) {
+  return await prisma.users.findFirst({
+    where: { username: login },
+    select: { icon: true },
+  });
+}
+
+export async function getUserByEmail(login: string){
+  return await prisma.users.findFirst({
+    where: { email: login },
+    select: { icon: true },
+  });
+}
+
+const userRepository = {
+  insert,
+  checkEmail,
+  checkUsername,
+  getUser,
+  getUserByUsername,
+  getUserByEmail
+};
 export default userRepository;
