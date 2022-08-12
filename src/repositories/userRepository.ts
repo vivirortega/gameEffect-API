@@ -48,8 +48,8 @@ export async function getUsernameByEmail(login: string) {
   });
 }
 
-export async function updateProfile(id: number, username: string, icon: string) {
-  await prisma.users.update({where: {id: id}, data: {username, icon}});
+export async function updateProfile(id: number, bio: string, icon: string) {
+  await prisma.users.updateMany({where: {id: id}, data: {bio, icon}});
 }
 
 const userRepository = {
