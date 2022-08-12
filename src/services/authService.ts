@@ -48,16 +48,18 @@ async function login(user: any) {
   }
 
   const getByEmail = await userRepository.getUserByEmail(login);
-  const getByUsername = await userRepository.checkUsername(login);
+  const getByUsername = await userRepository.getUserByUsername(login);
   const image = getByEmail || getByUsername;
-
+  const getUsernameByUsername = await userRepository.getUsernameByUsername(login);
+  const getUsernameByEmail = await userRepository.getUsernameByEmail(login);
+  const username = getUsernameByUsername || getUsernameByEmail;
 
   const token = jwt.sign(
     { id: userExists.id, email: userExists.email },
     process.env.JWT_SECRET,
     { expiresIn: process.env.JWT_EXPIRES_IN }
   );
-  return { token, image };
+  return { token, image, username };
 }
 
 const authService = { signup, login };
