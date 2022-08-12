@@ -4,5 +4,9 @@ async function getUser(id: number) {
   return await userRepository.getUser(id);
 }
 
-const userService = { getUser };
+async function getUserAndUpdate(id: number, bio: string, icon: string){
+  return await userRepository.updateProfile(id, bio, icon);
+}
+
+const userService = { getUser, getUserAndUpdate };
 export default userService;
