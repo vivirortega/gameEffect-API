@@ -8,5 +8,9 @@ async function deleteAvaliation(id: number, game_id: number){
   return await avaliationsRepository.deleteAvaliation(id, game_id);
 }
 
-const avaliationService = { createAvaliation, deleteAvaliation };
+async function getAllAvaliations(game_id: number){
+  return await avaliationsRepository.getAllAvaliations(game_id);
+}
+
+const avaliationService = { createAvaliation, deleteAvaliation, getAllAvaliations };
 export default avaliationService;

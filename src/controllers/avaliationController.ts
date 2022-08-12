@@ -15,3 +15,9 @@ export async function deleteAvaliation(req: Request, res: Response){
   await avaliationService.deleteAvaliation(id, idgame);
   res.sendStatus(200);
 }
+
+export async function getAllAvaliations(req: Request, res: Response){
+  const idgame = parseInt(req.params.id);
+  const avaliations = await avaliationService.getAllAvaliations(idgame);
+  return res.send(avaliations);
+}
