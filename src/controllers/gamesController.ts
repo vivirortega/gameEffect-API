@@ -21,3 +21,10 @@ export async function deleteGame(req: Request, res: Response) {
   res.sendStatus(200);
 }
 
+export async function searchGame(req: Request, res: Response) {
+  console.log(req.query);
+  const { name } = req.query;
+  const title = await gameService.searchGame(name.toString());
+  console.log(title);
+  return res.send(title);
+}
