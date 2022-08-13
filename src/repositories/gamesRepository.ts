@@ -1,8 +1,5 @@
-import { games } from "@prisma/client";
-import { string } from "joi";
 import prisma from "../config/database";
 import { gameService } from "../types/authTypes";
-
 
 export async function insert(game: gameService, user_id: number) {
   await prisma.games.create({ data: { ...game, user_id } });
@@ -17,11 +14,14 @@ export async function getGames(id: number) {
 }
 
 export async function searchGame(name: string) {
-  return await prisma.$queryRaw<games[]>`
-  SELECT * FROM games 
-  WHERE name LIKE name
-  LIMIT 10
-;`
+  return await prisma.games.findMany({
+    where: {
+      name: {
+        contains: name,
+        mode: "insensitive"
+      },
+    },
+  });
 }
 
 export async function deleteGame(id: number) {

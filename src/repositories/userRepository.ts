@@ -37,14 +37,14 @@ export async function getUserByEmail(login: string) {
 export async function getUsernameByUsername(login: string) {
   return await prisma.users.findFirst({
     where: { username: login },
-    select: { username: true },
+    select: { username: true, bio: true }, 
   });
 }
 
 export async function getUsernameByEmail(login: string) {
   return await prisma.users.findFirst({
     where: { email: login },
-    select: { username: true },
+    select: { username: true, bio: true },
   });
 }
 

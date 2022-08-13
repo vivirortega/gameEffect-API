@@ -44,16 +44,15 @@ model avaliations {
   review     String
   rate       Decimal
   isFavorite Boolean?
-  isPlayed   Boolean
-  gamelist   Boolean?
   user       users    @relation(fields: [user_id], references: [id])
   games      games    @relation(fields: [game_id], references: [id])
 }
 
 model gamelist {
-  id      Int @id @default(autoincrement())
-  user_id Int
-  game_id Int
+  id       Int      @id @default(autoincrement())
+  user_id  Int
+  game_id  Int
+  gamelist Boolean?
 
   user  users @relation(fields: [user_id], references: [id])
   games games @relation(fields: [game_id], references: [id])
