@@ -34,17 +34,17 @@ export async function getUserByEmail(login: string) {
   });
 }
 
-export async function getUsernameByUsername(login: string) {
+export async function getDataByUsername(login: string) {
   return await prisma.users.findFirst({
     where: { username: login },
-    select: { username: true, bio: true }, 
+    select: { username: true, bio: true, id: true, icon: true }, 
   });
 }
 
-export async function getUsernameByEmail(login: string) {
+export async function getDataByEmail(login: string) {
   return await prisma.users.findFirst({
     where: { email: login },
-    select: { username: true, bio: true },
+    select: { username: true, bio: true, id: true, icon: true },
   });
 }
 
@@ -59,8 +59,8 @@ const userRepository = {
   getUser,
   getUserByUsername,
   getUserByEmail,
-  getUsernameByUsername,
-  getUsernameByEmail,
+  getDataByUsername,
+  getDataByEmail,
   updateProfile
 };
 export default userRepository;
