@@ -28,3 +28,8 @@ export async function searchGame(req: Request, res: Response) {
   console.log(title);
   return res.send(title);
 }
+
+export async function searchRecentGames(req: Request, res: Response) {
+  const games = await gameService.searchRecentGames();
+  return res.send(games);
+}

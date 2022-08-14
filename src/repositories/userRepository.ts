@@ -16,7 +16,7 @@ export async function checkUsername(username: string) {
 export async function getUser(id: number) {
   return await prisma.users.findFirst({
     where: { id: id },
-    select: { username: true, icon: true, avaliations: true },
+    select: { username: true, icon: true, avaliations: true, bio: true, },
   });
 }
 

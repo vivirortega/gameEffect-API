@@ -31,8 +31,9 @@ model games {
   releaseDate String
   description String
   pictureUrl  String
-  user        users  @relation(fields: [user_id], references: [id])
+  created_at DateTime @default(now())
 
+  user        users  @relation(fields: [user_id], references: [id])
   avaliations avaliations[]
   gamelist    gamelist[]
 }
@@ -44,6 +45,8 @@ model avaliations {
   review     String
   rate       Decimal
   isFavorite Boolean?
+  created_at DateTime @default(now())
+
   user       users    @relation(fields: [user_id], references: [id])
   games      games    @relation(fields: [game_id], references: [id])
 }
@@ -53,6 +56,7 @@ model gamelist {
   user_id  Int
   game_id  Int
   gamelist Boolean?
+  created_at DateTime @default(now())
 
   user  users @relation(fields: [user_id], references: [id])
   games games @relation(fields: [game_id], references: [id])

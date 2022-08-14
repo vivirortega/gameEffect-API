@@ -2,6 +2,7 @@ import userRepository from "../repositories/userRepository";
 
 async function getUser(id: number) {
   return await userRepository.getUser(id);
+  
 }
 
 async function getUserAndUpdate(id: number, bio: string, icon: string){

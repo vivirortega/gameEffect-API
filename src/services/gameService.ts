@@ -19,8 +19,12 @@ async function getGame(id: number) {
 
 async function searchGame(name: string){
   return await gamesRepository.searchGame(name);
+}
+
+async function searchRecentGames(){
+  return await gamesRepository.searchRecentGames();
 
 }
 
-const gameService = { insertGame, getGame, searchGame };
+const gameService = { insertGame, getGame, searchGame, searchRecentGames };
 export default gameService;

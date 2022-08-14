@@ -18,7 +18,7 @@ export async function searchGame(name: string) {
     where: {
       name: {
         contains: name,
-        mode: "insensitive"
+        mode: "insensitive",
       },
     },
   });
@@ -41,5 +41,16 @@ export async function duplicatedGame(releaseDate: string, name: string) {
   });
 }
 
-const gamesRepository = { insert, deleteGame, getGames, duplicatedGame, searchGame };
+export async function searchRecentGames() {
+  return await prisma.$queryRaw`SELECT * FROM games ORDER BY created_at DESC`
+}
+
+const gamesRepository = {
+  insert,
+  deleteGame,
+  getGames,
+  duplicatedGame,
+  searchGame,
+  searchRecentGames,
+};
 export default gamesRepository;

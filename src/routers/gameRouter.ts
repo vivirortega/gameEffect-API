@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createGame, deleteGame, getGame, searchGame } from "../controllers/gamesController";
+import { createGame, deleteGame, getGame, searchGame, searchRecentGames } from "../controllers/gamesController";
 import { createAvaliation, deleteAvaliation, getAllAvaliations } from "../controllers/avaliationController";
 import schemaValidator from "../middlewares/schemaValidator";
 import { avaliationSchema } from "../schemas/avaliationSchema";
@@ -12,6 +12,7 @@ gameRouter.post("/game", schemaValidator(gameSchema), tokenValidator, createGame
 gameRouter.delete("/game/:id", tokenValidator, deleteGame);
 gameRouter.get("/game/:id", tokenValidator, getGame);
 gameRouter.get("/game", tokenValidator, searchGame);
+gameRouter.get("/", tokenValidator, searchRecentGames);
 gameRouter.post("/game/:id/avaliation", schemaValidator(avaliationSchema), tokenValidator, createAvaliation);
 gameRouter.delete("/game/:id/avaliations/:id", tokenValidator, deleteAvaliation);
 gameRouter.get("/game/:id/avaliations", tokenValidator, getAllAvaliations);
