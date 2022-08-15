@@ -17,14 +17,25 @@ async function getGame(id: number) {
   return await gamesRepository.getGames(id);
 }
 
-async function searchGame(name: string){
+async function searchGame(name: string) {
   return await gamesRepository.searchGame(name);
 }
 
-async function searchRecentGames(){
+async function searchRecentGames() {
   return await gamesRepository.searchRecentGames();
-
 }
 
-const gameService = { insertGame, getGame, searchGame, searchRecentGames };
+async function searchGenreRpg() {
+  return await gamesRepository.searchGenreJRPG();
+}
+
+
+const gameService = {
+  insertGame,
+  getGame,
+  searchGame,
+  searchRecentGames,
+  searchGenreRpg
+
+};
 export default gameService;

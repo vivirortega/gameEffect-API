@@ -1,13 +1,13 @@
 {
-  "name": "teste",
+  "name": "gameeffect",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "npx prisma migrate deploy && tsc",
     "start": "node dist/server.js",
     "dev": "nodemon src/server.ts",
-    "test": "jest --passWithNoTests --noStackTrace --runInBand",
-    "build": "npx prisma migrate deploy && tsc"
+    "test": "jest --passWithNoTests --noStackTrace --runInBand"
   },
   "keywords": [],
   "author": "",

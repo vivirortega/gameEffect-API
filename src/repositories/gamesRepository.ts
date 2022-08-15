@@ -55,6 +55,11 @@ export async function favorites(user_id: number) {
 `;
 }
 
+export async function searchGenreJRPG() {
+  return await prisma.$queryRaw`SELECT * FROM games WHERE genre = 'J-RPG'`;
+}
+
+
 const gamesRepository = {
   insert,
   deleteGame,
@@ -63,5 +68,6 @@ const gamesRepository = {
   searchGame,
   searchRecentGames,
   favorites,
+  searchGenreJRPG,
 };
 export default gamesRepository;

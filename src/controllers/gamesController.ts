@@ -33,3 +33,8 @@ export async function searchRecentGames(req: Request, res: Response) {
   const games = await gameService.searchRecentGames();
   return res.send(games);
 }
+
+export async function searchJrpg(req: Request, res: Response) {
+  const jrpg = await gameService.searchGenreRpg();
+  return res.send(jrpg);
+}

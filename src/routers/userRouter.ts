@@ -10,5 +10,6 @@ userRouter.get("/user/:id", tokenValidator, getUser);
 userRouter.put("/user/:id", tokenValidator, schemaValidator(editSchema), updateUser);
 userRouter.get("/:id", tokenValidator,  renderFavorites);
 userRouter.get("/:id/recent", tokenValidator, getRecent);
+userRouter.get("/:id/recent", tokenValidator, getRecent);
 
 export default userRouter;

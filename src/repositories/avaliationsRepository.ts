@@ -44,7 +44,6 @@ export async function deleteAvaliation(id: number, game_id: number) {
 
 export async function getRecentAvaliations(user_id: number) {
   const userId = user_id;
-  console.log(userId);
   return await prisma.$queryRaw`SELECT "pictureUrl", name, rate
   from avaliations
   JOIN games ON game_id = games.id
