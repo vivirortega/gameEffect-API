@@ -16,7 +16,7 @@ export async function checkUsername(username: string) {
 export async function getUser(id: number) {
   return await prisma.users.findFirst({
     where: { id: id },
-    select: { username: true, icon: true, avaliations: true, bio: true, },
+    select: { username: true, icon: true, avaliations: true, bio: true },
   });
 }
 
@@ -37,7 +37,7 @@ export async function getUserByEmail(login: string) {
 export async function getDataByUsername(login: string) {
   return await prisma.users.findFirst({
     where: { username: login },
-    select: { username: true, bio: true, id: true, icon: true }, 
+    select: { username: true, bio: true, id: true, icon: true },
   });
 }
 
@@ -49,8 +49,9 @@ export async function getDataByEmail(login: string) {
 }
 
 export async function updateProfile(id: number, bio: string, icon: string) {
-  await prisma.users.updateMany({where: {id: id}, data: {bio, icon}});
+  await prisma.users.updateMany({ where: { id: id }, data: { bio, icon } });
 }
+
 
 const userRepository = {
   insert,

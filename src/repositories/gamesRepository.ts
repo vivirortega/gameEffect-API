@@ -42,7 +42,17 @@ export async function duplicatedGame(releaseDate: string, name: string) {
 }
 
 export async function searchRecentGames() {
-  return await prisma.$queryRaw`SELECT * FROM games ORDER BY created_at DESC`
+  return await prisma.$queryRaw`SELECT * FROM games ORDER BY created_at DESC`;
+}
+
+export async function favorites(user_id: number) {
+  const userId = user_id;
+  return await prisma.$queryRaw`SELECT games."pictureUrl" as picture, games."name", "isFavorite"
+  from avaliations
+  JOIN games ON game_id = games.id
+  WHERE "isFavorite" = true AND avaliations.user_id = ${userId}
+  ORDER BY avaliations.created_at DESC;
+`;
 }
 
 const gamesRepository = {
@@ -52,5 +62,6 @@ const gamesRepository = {
   duplicatedGame,
   searchGame,
   searchRecentGames,
+  favorites,
 };
 export default gamesRepository;

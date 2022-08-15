@@ -1,3 +1,4 @@
+import gamesRepository from "../repositories/gamesRepository";
 import userRepository from "../repositories/userRepository";
 
 async function getUser(id: number) {
@@ -9,5 +10,9 @@ async function getUserAndUpdate(id: number, bio: string, icon: string){
   return await userRepository.updateProfile(id, bio, icon);
 }
 
-const userService = { getUser, getUserAndUpdate };
+async function favorites(user_id: number){
+  return await gamesRepository.favorites(user_id);
+}
+
+const userService = { getUser, getUserAndUpdate, favorites };
 export default userService;

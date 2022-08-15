@@ -21,3 +21,10 @@ export async function getAllAvaliations(req: Request, res: Response){
   const avaliations = await avaliationService.getAllAvaliations(idgame);
   return res.send(avaliations);
 }
+
+export async function getAllRate(req: Request, res: Response){
+  const idgame = parseInt(req.params.id);
+  const avaliations = await avaliationService.getRate(idgame);
+  return res.send(avaliations);
+}
+

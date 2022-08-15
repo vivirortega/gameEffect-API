@@ -12,5 +12,13 @@ async function getAllAvaliations(game_id: number){
   return await avaliationsRepository.getAllAvaliations(game_id);
 }
 
-const avaliationService = { createAvaliation, deleteAvaliation, getAllAvaliations };
+async function getRate(game_id: number){
+  return await avaliationsRepository.getAvaliationRate(game_id);
+}
+
+async function getRecent(user_id: number){
+  return await avaliationsRepository.getRecentAvaliations(user_id);
+}
+
+const avaliationService = { createAvaliation, deleteAvaliation, getAllAvaliations, getRate, getRecent};
 export default avaliationService;
