@@ -12,6 +12,7 @@ import {
   deleteAvaliation,
   getAllAvaliations,
   getAllRate,
+  getAllReview
 } from "../controllers/avaliationController";
 import schemaValidator from "../middlewares/schemaValidator";
 import { avaliationSchema } from "../schemas/avaliationSchema";
@@ -29,7 +30,7 @@ gameRouter.post(
 gameRouter.delete("/game/:id", tokenValidator, deleteGame);
 gameRouter.get("/game/:id", tokenValidator, getGame);
 gameRouter.get("/game", tokenValidator, searchGame);
-gameRouter.get("/", tokenValidator, searchRecentGames);
+gameRouter.get("/recent", tokenValidator, searchRecentGames);
 gameRouter.post(
   "/game/:id/avaliation",
   schemaValidator(avaliationSchema),
@@ -42,6 +43,7 @@ gameRouter.delete(
   deleteAvaliation
 );
 gameRouter.get("/game/:id/avaliations", tokenValidator, getAllAvaliations);
+gameRouter.get("/game/:id/review", tokenValidator, getAllReview);
 gameRouter.get("/game/:id/rate", tokenValidator, getAllRate);
 gameRouter.get("/jrpg", tokenValidator, searchJrpg);
 

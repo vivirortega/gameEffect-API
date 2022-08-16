@@ -7,6 +7,6 @@ import { tokenValidator } from "../middlewares/tokenValidate";
 const authRouter = Router();
 
 authRouter.post("/signup", schemaValidator(signupSchema), signUp);
-authRouter.post("/login", schemaValidator(loginSchema), login);
+authRouter.post("/", schemaValidator(loginSchema), login);
 
 export default authRouter;

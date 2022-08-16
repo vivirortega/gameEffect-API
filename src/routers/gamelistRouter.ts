@@ -6,6 +6,11 @@ import schemaValidator from "../middlewares/schemaValidator";
 
 const gamelistRouter = Router();
 
-gamelistRouter.post("/game/:id/gamelist", schemaValidator(gamelistSchema), tokenValidator, createGamelist);
+gamelistRouter.post(
+  "/game/:id/gamelist",
+  schemaValidator(gamelistSchema),
+  tokenValidator,
+  createGamelist
+);
 
 export default gamelistRouter;

@@ -51,6 +51,14 @@ export async function getRecentAvaliations(user_id: number) {
   ORDER BY avaliations.created_at DESC`;
 }
 
+export async function getAllReviews(game_id: number) {
+  const gameId = game_id;
+  return await prisma.$queryRaw`SELECT name, COUNT(review) as reviews
+  from avaliations
+  JOIN games ON game_id = games.id
+  GROUP BY name;`
+}
+
 const avaliationsRepository = {
   insert,
   deleteAvaliation,
@@ -58,5 +66,6 @@ const avaliationsRepository = {
   getAvaliationRate,
   getAllMostRatedGames,
   getRecentAvaliations,
+  getAllReviews,
 };
 export default avaliationsRepository;
