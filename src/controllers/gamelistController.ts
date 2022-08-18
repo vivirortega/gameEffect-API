@@ -9,3 +9,4 @@ export async function createGamelist(req: Request, res: Response) {
   await gamelistService.insertGamelist(id, user.id, avaliation);
   res.sendStatus(201);
 }
+

@@ -41,7 +41,7 @@ gameRouter.delete(
   "/game/:id/avaliations/:id",
   tokenValidator,
   deleteAvaliation
-);
+);                                                                                                                                                                   
 gameRouter.get("/game/:id/avaliations", tokenValidator, getAllAvaliations);
 gameRouter.get("/game/:id/review", tokenValidator, getAllReview);
 gameRouter.get("/game/:id/rate", tokenValidator, getAllRate);

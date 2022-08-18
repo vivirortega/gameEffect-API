@@ -24,7 +24,6 @@ export async function deleteGame(req: Request, res: Response) {
 export async function searchGame(req: Request, res: Response) {
   const { name } = req.query;
   const title = await gameService.searchGame(name.toString());
-  console.log(title);
   return res.send(title);
 }
 
