@@ -6,7 +6,7 @@
   <p> <a href="https://game-effect-front-end.vercel.app">deploy: gameEffect - vercel</a></p>
   </div> 
   <h2>Project:</h2>
-<p>App to rate games, insert a game into the database, rate, favorite and comment on your favorite and most played games.
+<p>App to rate games, insert a game into the database, rate, favorite, comment on your favorite and most played games and see other people avaliations.
 </p>
 
 <h2>Overview:</h2>
